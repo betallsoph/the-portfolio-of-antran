@@ -1,60 +1,77 @@
-'use client' // Cần 'use client' vì chúng ta sẽ dùng hook (useRef, useLayoutEffect)
+'use client'
 
-import { Box, Heading, Text } from '@chakra-ui/react'
 import { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
+import { Box, Button, Heading, Text, SimpleGrid, VStack, Image } from '@chakra-ui/react'
+import SplitType from 'split-type' // Assume installed via npm install splittype
+
+// Sample achievements data (adapt to your real ones)
+const achievements = [
+  { score: 'React Master', label: 'Frontend Development' },
+  { score: 'Next.js Expert', label: 'Full-Stack Apps' },
+  { score: 'GSAP Pro', label: 'Animations & Interactions' },
+  { score: 'TypeScript Guru', label: 'Type-Safe Code' },
+]
 
 export default function Hero() {
-  const containerRef = useRef(null);
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const achievementsRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLButtonElement>(null);
 
-  // useLayoutEffect chạy trước khi trình duyệt paint, tốt cho animation
   useLayoutEffect(() => {
     const timeline = gsap.timeline();
 
-    // Context giúp cleanup animation dễ dàng hơn
     const ctx = gsap.context(() => {
       timeline
-        .from(titleRef.current, {
-          duration: 1,
-          opacity: 0,
-          y: 30, // Di chuyển từ dưới lên
-          ease: 'power4.out'
-        })
-        .from(subtitleRef.current, {
-          duration: 1,
-          opacity: 0,
-          y: 30,
-          ease: 'power4.out'
-        }, "-=0.8"); // Bắt đầu animation này sớm hơn 0.8s
-    }, containerRef); // Scope context vào container
+        .from(titleRef.current, { duration: 1, opacity: 0, y: 30, ease: 'power4.out' })
+        .from(subtitleRef.current, { duration: 1, opacity: 0, y: 30, ease: 'power4.out' }, '-=0.8')
+        .from(achievementsRef.current?.children, { duration: 0.8, opacity: 0, y: 20, stagger: 0.2, ease: 'power3.out' }, '-=0.5')
+        .from(ctaRef.current, { duration: 0.8, opacity: 0, scale: 0.9, ease: 'back.out(1.7)' }, '-=0.3');
 
-    return () => ctx.revert(); // Cleanup khi component unmount
+      // Removed: Split and animate title (keep normal)
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <Box
       ref={containerRef}
-      bg="gray.900"
+      bgGradient="linear(135deg, #1A202C 0%, #2D3748 100%)"
       color="white"
-      minH="100vh" // Cao bằng chiều cao màn hình
+      minH="100vh"
       display="flex"
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
       textAlign="center"
       p={4}
-      style={{
-        background: 'linear-gradient(135deg, #1A202C 0%, #2D3748 100%)'
-      }}
     >
-      <Heading ref={titleRef} as="h1" size="4xl" mb={4}>
-        Chào bạn, mình là Antt
-      </Heading>
-      <Text ref={subtitleRef} fontSize="2xl" opacity={0.8}>
-        Một Software engineer siu ngu!
-      </Text>
+      <VStack spacing={8}>
+        <Heading ref={titleRef} as="h1" size="3xl" fontWeight="bold">
+          Chào bạn, mình là Antt - Software Engineer
+        </Heading>
+        <Text ref={subtitleRef} fontSize="xl" opacity={0.8}>
+          Chuyên xây dựng web apps hiện đại với React và Next.js!
+        </Text>
+        
+        {/* Achievements like IELTS scores */}
+        <SimpleGrid ref={achievementsRef} columns={{ base: 2, md: 4 }} spacing={6}>
+          {achievements.map((ach, index) => (
+            <VStack key={index} p={4} bg="gray.700" borderRadius="md" boxShadow="md">
+              <Text fontSize="2xl" fontWeight="bold">{ach.score}</Text>
+              <Text>{ach.label}</Text>
+            </VStack>
+          ))}
+        </SimpleGrid>
+        
+        {/* CTA Button */}
+        <Button ref={ctaRef} colorScheme="teal" size="lg" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
+          Xem Portfolio của mình
+        </Button>
+      </VStack>
     </Box>
   )
 }
