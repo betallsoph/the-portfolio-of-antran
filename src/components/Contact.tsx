@@ -34,13 +34,13 @@ export default function Contact() {
           opacity: 0,
           y: 10,
           skewY: 3,
-          duration: 0.64,
-          stagger: 0.08,
+          duration: 0.18,
+          stagger: 0.008,
           ease: 'power4.out',
           scrollTrigger: {
             trigger: titleRef.current,
             start: 'top 115%',
-            scrub: 1,
+            scrub: 0.4,
           }
         })
       }

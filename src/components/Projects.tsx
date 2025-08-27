@@ -14,8 +14,6 @@ export default function Projects() {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
 
-  console.log('Projects data:', projects); // Debug log
-
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Removed: gsap.from(titleRef.current, { opacity: 0, y: 50, duration: 1, scrollTrigger: { trigger: titleRef.current, start: 'top 85%' } })
@@ -40,13 +38,13 @@ export default function Projects() {
           opacity: 0,
           y: 10,
           skewY: 3,
-          duration: 0.64,
-          stagger: 0.08,
+          duration: 0.18,
+          stagger: 0.02,
           ease: 'power4.out',
           scrollTrigger: {
             trigger: titleRef.current,
             start: 'top 115%',
-            scrub: 1,
+            scrub: 0.4,
           }
         })
       }
