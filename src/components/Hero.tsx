@@ -2,8 +2,7 @@
 
 import { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
-import { Box, Button, Heading, Text, SimpleGrid, VStack, Image } from '@chakra-ui/react'
-import SplitType from 'split-type' // Assume installed via npm install splittype
+import { Box, Button, Heading, Text, SimpleGrid, VStack } from '@chakra-ui/react'
 
 // Sample achievements data (adapt to your real ones)
 const achievements = [
@@ -27,7 +26,7 @@ export default function Hero() {
       timeline
         .from(titleRef.current, { duration: 1, opacity: 0, y: 30, ease: 'power4.out' })
         .from(subtitleRef.current, { duration: 1, opacity: 0, y: 30, ease: 'power4.out' }, '-=0.8')
-        .from(achievementsRef.current?.children, { duration: 0.8, opacity: 0, y: 20, stagger: 0.2, ease: 'power3.out' }, '-=0.5')
+        .from(achievementsRef.current ? Array.from(achievementsRef.current.children as HTMLCollectionOf<HTMLElement>) : [], { duration: 0.8, opacity: 0, y: 20, stagger: 0.2, ease: 'power3.out' }, '-=0.5')
         .from(ctaRef.current, { duration: 0.8, opacity: 0, scale: 0.9, ease: 'back.out(1.7)' }, '-=0.3');
 
       // Removed: Split and animate title (keep normal)

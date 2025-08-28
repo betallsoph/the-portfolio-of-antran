@@ -9,16 +9,16 @@ import SplitType from 'split-type' // Assume installed
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Contact() {
-  const sectionRef = useRef(null)
-  const titleRef = useRef(null)
-  const formRef = useRef(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const formRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Removed: gsap.from(titleRef.current, { opacity: 0, y: 50, duration: 1, scrollTrigger: { trigger: titleRef.current, start: 'top 85%' } })
 
       if (formRef.current) {
-        gsap.from(Array.from(formRef.current.children), {
+        gsap.from(Array.from(formRef.current.children as HTMLCollectionOf<HTMLElement>), {
           opacity: 0,
           y: 20,
           stagger: 0.1,

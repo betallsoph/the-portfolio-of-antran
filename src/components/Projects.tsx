@@ -11,8 +11,8 @@ import SplitType from 'split-type' // Assume installed
 gsap.registerPlugin(ScrollTrigger); // Đăng ký plugin ScrollTrigger
 
 export default function Projects() {
-  const containerRef = useRef(null);
-  const titleRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {

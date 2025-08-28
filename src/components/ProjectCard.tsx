@@ -1,6 +1,7 @@
 'use client'
 
 import { Box, Heading, Text, Tag, Wrap, WrapItem, Button } from '@chakra-ui/react';
+import Image from 'next/image';
 
 // Định nghĩa kiểu dữ liệu cho props
 interface ProjectCardProps {
@@ -28,9 +29,11 @@ export default function ProjectCard({ title, description, image, tags, link }: P
         borderColor: 'teal.500',
       }}
     >
-      <img 
+      <Image 
         src={image} 
         alt={`Screenshot of ${title}`} 
+        width={400}
+        height={200}
         style={{
           height: '200px',
           width: '100%',

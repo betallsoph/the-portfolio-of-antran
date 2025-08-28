@@ -16,8 +16,8 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
-  const sectionRef = useRef(null)
-  const titleRef = useRef(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
@@ -25,7 +25,7 @@ export default function Testimonials() {
       // Removed: gsap.from(titleRef.current, { opacity: 0, y: 50, duration: 1, scrollTrigger: { trigger: titleRef.current, start: 'top 85%' } })
 
       if (cardsRef.current) {
-        gsap.from(Array.from(cardsRef.current.children), {
+        gsap.from(Array.from(cardsRef.current.children as HTMLCollectionOf<HTMLElement>), {
           opacity: 0,
           y: 30,
           stagger: 0.2,
@@ -64,7 +64,7 @@ export default function Testimonials() {
       <SimpleGrid ref={cardsRef} columns={{ base: 1, md: 3 }} spacing={10}>
         {testimonials.map((test, index) => (
           <VStack key={index} p={6} bg="gray.700" borderRadius="md" boxShadow="lg" textAlign="center">
-            <Text fontSize="lg" fontStyle="italic">"{test.quote}"</Text>
+            <Text fontSize="lg" fontStyle="italic">&ldquo;{test.quote}&rdquo;</Text>
             <Text fontWeight="bold" mt={4}>{test.name}</Text>
             <Text color="teal.300">{test.score}</Text>
           </VStack>

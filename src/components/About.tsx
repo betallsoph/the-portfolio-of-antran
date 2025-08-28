@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Heading, Text, SimpleGrid, Stat, StatLabel, StatNumber, StatHelpText } from '@chakra-ui/react'
+import { Box, Heading, Text, SimpleGrid, Stat, StatLabel, StatNumber } from '@chakra-ui/react'
 import { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -9,8 +9,8 @@ import SplitType from 'split-type' // Assume installed
 gsap.registerPlugin(ScrollTrigger)
 
 export default function About() {
-  const sectionRef = useRef(null)
-  const titleRef = useRef(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
@@ -18,7 +18,7 @@ export default function About() {
       // Removed: gsap.from(titleRef.current, { opacity: 0, y: 50, duration: 1, scrollTrigger: { trigger: titleRef.current, start: 'top 85%' } })
 
       if (statsRef.current) {
-        gsap.from(Array.from(statsRef.current.children), {
+        gsap.from(Array.from(statsRef.current.children as HTMLCollectionOf<HTMLElement>), {
           opacity: 0,
           y: 30,
           stagger: 0.2,
@@ -55,7 +55,7 @@ export default function About() {
         About Me
       </Heading>
       <Text textAlign="center" maxW="800px" mx="auto" mb={12} fontSize="lg">
-        I'm Antt, a passionate Software Engineer specializing in web development. With years of experience in building scalable apps using React, Next.js, and modern tech stacks, I focus on creating efficient, user-centric solutions. Graduated from [Your University], I've worked on various projects from startups to enterprise levels.
+        I&apos;m Antt, a passionate Software Engineer specializing in web development. With years of experience in building scalable apps using React, Next.js, and modern tech stacks, I focus on creating efficient, user-centric solutions. Graduated from [Your University], I&apos;ve worked on various projects from startups to enterprise levels.
       </Text>
       <SimpleGrid ref={statsRef} columns={{ base: 1, md: 4 }} spacing={10} justifyItems="center">
         <Stat textAlign="center">
