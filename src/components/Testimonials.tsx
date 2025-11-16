@@ -4,15 +4,15 @@ import { Box, Heading, Text, SimpleGrid, VStack } from '@chakra-ui/react'
 import { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import SplitType from 'split-type' // Assume installed
+import SplitType from 'split-type'
 
 gsap.registerPlugin(ScrollTrigger)
 
 // Sample testimonials (replace with real ones)
 const testimonials = [
-  { name: 'Tech Startup CEO', quote: 'Antt delivered an amazing MVP for our app - fast, scalable, and with killer animations!', score: '5/5 Stars' },
-  { name: 'Fellow Developer', quote: 'Working with Antt on this project was great; his Next.js expertise saved us weeks of development time.', score: 'Highly Recommended' },
-  { name: 'Client from Freelance', quote: 'The custom web app Antt built exceeded our expectations, especially the responsive design and integrations.', score: 'Excellent Work' },
+  { name: 'CEO Startup Công Nghệ', quote: 'Antt đã làm MVP cực kỳ ấn tượng - nhanh, mượt và animations đẹp quá trời! 🚀', score: '⭐⭐⭐⭐⭐', role: 'Tech Startup' },
+  { name: 'Anh Developer', quote: 'Làm việc với Antt rất vui! Kinh nghiệm Next.js của bạn ấy giúp team mình tiết kiệm được nhiều tuần phát triển.', score: '💯 Recommended', role: 'Senior Developer' },
+  { name: 'Khách Hàng Freelance', quote: 'Website mà Antt làm vượt quá mong đợi của mình, đặc biệt là phần responsive design và integrations!', score: '🎯 Tuyệt Vời', role: 'Business Owner' },
 ];
 
 export default function Testimonials() {
@@ -22,32 +22,50 @@ export default function Testimonials() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Removed: gsap.from(titleRef.current, { opacity: 0, y: 50, duration: 1, scrollTrigger: { trigger: titleRef.current, start: 'top 85%' } })
-
-      if (cardsRef.current) {
-        gsap.from(Array.from(cardsRef.current.children as HTMLCollectionOf<HTMLElement>), {
-          opacity: 0,
-          y: 30,
-          stagger: 0.2,
-          duration: 0.8,
-          scrollTrigger: { trigger: cardsRef.current, start: 'top 80%' }
-        })
-      }
-
-      // Keep: Split and animate title per character
+      // Animate title with character split
       if (titleRef.current) {
         const titleSplit = new SplitType(titleRef.current, { types: 'chars' })
         gsap.from(titleSplit.chars, {
           opacity: 0,
-          y: 10,
-          skewY: 3,
-          duration: 0.18,
-          stagger: 0.015,
-          ease: 'power4.out',
+          y: 20,
+          rotateX: -90,
+          stagger: 0.03,
+          duration: 0.6,
+          ease: 'back.out(1.7)',
           scrollTrigger: {
             trigger: titleRef.current,
-            start: 'top 115%',
-            scrub: 0.4,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          }
+        })
+      }
+
+      // Enhanced stagger animation for testimonial cards
+      if (cardsRef.current) {
+        const cards = Array.from(cardsRef.current.children as HTMLCollectionOf<HTMLElement>)
+        gsap.from(cards, {
+          opacity: 0,
+          y: 60,
+          scale: 0.85,
+          rotationX: -20,
+          stagger: 0.2,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          }
+        })
+
+        // Parallax effect for cards
+        gsap.to(cards, {
+          y: -25,
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: 'top 70%',
+            end: 'bottom 30%',
+            scrub: 1.5,
           }
         })
       }
@@ -57,16 +75,63 @@ export default function Testimonials() {
   }, [])
 
   return (
-    <Box ref={sectionRef} bg="gray.900" color="white" py={20} px={8} id="testimonials">
-      <Heading ref={titleRef} as="h2" size="2xl" textAlign="center" mb={12}>
-        What People Say
+    <Box ref={sectionRef} bg="#faf8f6" color="gray.800" py={20} px={8} id="testimonials">
+      <Heading
+        ref={titleRef}
+        as="h2"
+        size="2xl"
+        textAlign="center"
+        mb={6}
+        bgGradient="linear(to-r, #ff6b9d, #c084fc)"
+        bgClip="text"
+      >
+        Mọi Người Nói Gì 💬
       </Heading>
-      <SimpleGrid ref={cardsRef} columns={{ base: 1, md: 3 }} spacing={10}>
+      <Text textAlign="center" fontSize="lg" color="gray.600" mb={12}>
+        Feedback từ những người đã làm việc với mình
+      </Text>
+      <SimpleGrid ref={cardsRef} columns={{ base: 1, md: 3 }} spacing={8} maxW="1200px" mx="auto">
         {testimonials.map((test, index) => (
-          <VStack key={index} p={6} bg="gray.700" borderRadius="md" boxShadow="lg" textAlign="center">
-            <Text fontSize="lg" fontStyle="italic">&ldquo;{test.quote}&rdquo;</Text>
-            <Text fontWeight="bold" mt={4}>{test.name}</Text>
-            <Text color="teal.300">{test.score}</Text>
+          <VStack
+            key={index}
+            p={8}
+            bg="white"
+            borderRadius="2xl"
+            boxShadow="0 4px 20px rgba(0,0,0,0.06)"
+            textAlign="center"
+            transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+            borderWidth="1px"
+            borderColor="gray.100"
+            spacing={4}
+            _hover={{
+              transform: 'translateY(-10px)',
+              boxShadow: '0 20px 50px rgba(255, 107, 157, 0.15)',
+              borderColor: 'pink.200'
+            }}
+          >
+            <Text fontSize="4xl" mb={2}>
+              💭
+            </Text>
+            <Text
+              fontSize="md"
+              fontStyle="italic"
+              lineHeight="1.8"
+              color="gray.600"
+              position="relative"
+            >
+              &ldquo;{test.quote}&rdquo;
+            </Text>
+            <Box mt={4}>
+              <Text fontWeight="bold" fontSize="lg" color="gray.800">
+                {test.name}
+              </Text>
+              <Text fontSize="sm" color="gray.500" mt={1}>
+                {test.role}
+              </Text>
+              <Text fontSize="lg" mt={2}>
+                {test.score}
+              </Text>
+            </Box>
           </VStack>
         ))}
       </SimpleGrid>
