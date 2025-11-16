@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Heading, SimpleGrid } from '@chakra-ui/react';
+import { Box, Heading, Text, SimpleGrid } from '@chakra-ui/react';
 import ProjectCard from './ProjectCard';
 import { projects } from '@/data/projects';
 import { useLayoutEffect, useRef } from 'react';
@@ -72,18 +72,28 @@ export default function Projects() {
   }, []);
 
   return (
-    <Box ref={containerRef} bg="gray.900" color="white" py={20} px={8} id="projects">
+    <Box ref={containerRef} bg="#faf8f6" color="gray.800" py={20} px={8} id="projects">
       <Box width="100%" textAlign="center" mb={12}>
-        <Heading ref={titleRef} as="h2" size="2xl">
-          My Projects
+        <Heading
+          ref={titleRef}
+          as="h2"
+          size="2xl"
+          bgGradient="linear(to-r, #ff6b9d, #c084fc)"
+          bgClip="text"
+        >
+          Dự Án Của Mình 🎨
         </Heading>
+        <Text mt={4} fontSize="lg" color="gray.600">
+          Một số projects mình đã làm
+        </Text>
       </Box>
 
       <SimpleGrid
         ref={gridRef}
         columns={{ base: 1, md: 2, lg: 3 }}
-        spacing={10}
-        justifyItems="center"
+        spacing={8}
+        maxW="1400px"
+        mx="auto"
       >
         {projects.map((project) => (
           <ProjectCard
@@ -92,7 +102,7 @@ export default function Projects() {
             description={project.description}
             image={project.image}
             tags={project.tags}
-            link="https://example.com"
+            link={project.link}
           />
         ))}
       </SimpleGrid>

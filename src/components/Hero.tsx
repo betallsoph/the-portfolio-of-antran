@@ -4,15 +4,16 @@ import { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { Box, Button, Heading, Text, SimpleGrid, VStack } from '@chakra-ui/react'
+import FloatingShapes from './FloatingShapes'
 
 gsap.registerPlugin(ScrollTrigger)
 
 // Sample achievements data (adapt to your real ones)
 const achievements = [
-  { score: 'React Master', label: 'Frontend Development' },
-  { score: 'Next.js Expert', label: 'Full-Stack Apps' },
-  { score: 'GSAP Pro', label: 'Animations & Interactions' },
-  { score: 'TypeScript Guru', label: 'Type-Safe Code' },
+  { score: '⚛️ React', label: 'Frontend Development' },
+  { score: '🚀 Next.js', label: 'Full-Stack Apps' },
+  { score: '✨ GSAP', label: 'Animations & Interactions' },
+  { score: '💎 TypeScript', label: 'Type-Safe Code' },
 ]
 
 export default function Hero() {
@@ -125,8 +126,8 @@ export default function Hero() {
   return (
     <Box
       ref={containerRef}
-      bgGradient="linear(135deg, #1A202C 0%, #2D3748 100%)"
-      color="white"
+      bg="linear-gradient(135deg, #faf8f6 0%, #fff5f7 50%, #f3e8ff 100%)"
+      color="gray.800"
       minH="100vh"
       display="flex"
       flexDirection="column"
@@ -137,32 +138,50 @@ export default function Hero() {
       position="relative"
       overflow="hidden"
     >
-      <VStack spacing={8}>
-        <Heading ref={titleRef} as="h1" size="3xl" fontWeight="bold">
-          Chào bạn, mình là Antt - Software Engineer
+      {/* Floating shapes background */}
+      <FloatingShapes />
+
+      {/* Main content */}
+      <VStack spacing={8} position="relative" zIndex={1}>
+        <Heading
+          ref={titleRef}
+          as="h1"
+          size="3xl"
+          fontWeight="bold"
+          bgGradient="linear(to-r, #ff6b9d, #c084fc, #60a5fa)"
+          bgClip="text"
+        >
+          Chào bạn, mình là Antt ✨
         </Heading>
-        <Text ref={subtitleRef} fontSize="xl" opacity={0.8}>
-          Chuyên xây dựng web apps hiện đại với React và Next.js!
+        <Text
+          ref={subtitleRef}
+          fontSize="xl"
+          color="gray.600"
+          fontWeight="medium"
+        >
+          Software Engineer 💻 | Tạo ra những trang web đẹp mắt và hiện đại 🎨
         </Text>
 
-        {/* Achievements like IELTS scores */}
-        <SimpleGrid ref={achievementsRef} columns={{ base: 2, md: 4 }} spacing={6}>
+        {/* Achievements */}
+        <SimpleGrid ref={achievementsRef} columns={{ base: 2, md: 4 }} spacing={6} w="full" maxW="900px">
           {achievements.map((ach, index) => (
             <VStack
               key={index}
-              p={4}
-              bg="gray.700"
-              borderRadius="md"
-              boxShadow="md"
+              p={6}
+              bg="white"
+              borderRadius="2xl"
+              boxShadow="0 4px 20px rgba(0,0,0,0.08)"
+              border="1px solid"
+              borderColor="gray.100"
               transition="all 0.3s ease"
               _hover={{
-                transform: 'translateY(-5px) scale(1.05)',
-                boxShadow: 'xl',
-                bg: 'gray.600'
+                transform: 'translateY(-8px) scale(1.03)',
+                boxShadow: '0 12px 40px rgba(255, 107, 157, 0.2)',
+                borderColor: 'pink.200'
               }}
             >
-              <Text fontSize="2xl" fontWeight="bold">{ach.score}</Text>
-              <Text>{ach.label}</Text>
+              <Text fontSize="3xl" fontWeight="bold">{ach.score}</Text>
+              <Text fontSize="sm" color="gray.600" textAlign="center">{ach.label}</Text>
             </VStack>
           ))}
         </SimpleGrid>
@@ -170,18 +189,24 @@ export default function Hero() {
         {/* CTA Button with magnetic effect */}
         <Button
           ref={ctaRef}
-          colorScheme="teal"
           size="lg"
+          px={8}
+          py={6}
+          fontSize="lg"
+          bg="linear-gradient(135deg, #ff6b9d 0%, #c084fc 100%)"
+          color="white"
+          borderRadius="full"
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
           transition="all 0.3s ease"
+          boxShadow="0 8px 25px rgba(255, 107, 157, 0.3)"
           _hover={{
             transform: 'scale(1.05)',
-            boxShadow: '0 10px 30px rgba(56, 178, 172, 0.4)'
+            boxShadow: '0 15px 40px rgba(255, 107, 157, 0.4)'
           }}
         >
-          Xem Portfolio của mình
+          Xem Portfolio của mình 🚀
         </Button>
       </VStack>
     </Box>

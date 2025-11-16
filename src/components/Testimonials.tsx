@@ -10,9 +10,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 // Sample testimonials (replace with real ones)
 const testimonials = [
-  { name: 'Tech Startup CEO', quote: 'Antt delivered an amazing MVP for our app - fast, scalable, and with killer animations!', score: '5/5 Stars' },
-  { name: 'Fellow Developer', quote: 'Working with Antt on this project was great; his Next.js expertise saved us weeks of development time.', score: 'Highly Recommended' },
-  { name: 'Client from Freelance', quote: 'The custom web app Antt built exceeded our expectations, especially the responsive design and integrations.', score: 'Excellent Work' },
+  { name: 'CEO Startup Công Nghệ', quote: 'Antt đã làm MVP cực kỳ ấn tượng - nhanh, mượt và animations đẹp quá trời! 🚀', score: '⭐⭐⭐⭐⭐', role: 'Tech Startup' },
+  { name: 'Anh Developer', quote: 'Làm việc với Antt rất vui! Kinh nghiệm Next.js của bạn ấy giúp team mình tiết kiệm được nhiều tuần phát triển.', score: '💯 Recommended', role: 'Senior Developer' },
+  { name: 'Khách Hàng Freelance', quote: 'Website mà Antt làm vượt quá mong đợi của mình, đặc biệt là phần responsive design và integrations!', score: '🎯 Tuyệt Vời', role: 'Business Owner' },
 ];
 
 export default function Testimonials() {
@@ -75,52 +75,63 @@ export default function Testimonials() {
   }, [])
 
   return (
-    <Box ref={sectionRef} bg="gray.900" color="white" py={20} px={8} id="testimonials">
-      <Heading ref={titleRef} as="h2" size="2xl" textAlign="center" mb={12}>
-        What People Say
+    <Box ref={sectionRef} bg="#faf8f6" color="gray.800" py={20} px={8} id="testimonials">
+      <Heading
+        ref={titleRef}
+        as="h2"
+        size="2xl"
+        textAlign="center"
+        mb={6}
+        bgGradient="linear(to-r, #ff6b9d, #c084fc)"
+        bgClip="text"
+      >
+        Mọi Người Nói Gì 💬
       </Heading>
-      <SimpleGrid ref={cardsRef} columns={{ base: 1, md: 3 }} spacing={10}>
+      <Text textAlign="center" fontSize="lg" color="gray.600" mb={12}>
+        Feedback từ những người đã làm việc với mình
+      </Text>
+      <SimpleGrid ref={cardsRef} columns={{ base: 1, md: 3 }} spacing={8} maxW="1200px" mx="auto">
         {testimonials.map((test, index) => (
           <VStack
             key={index}
-            p={6}
-            bg="gray.700"
-            borderRadius="md"
-            boxShadow="lg"
+            p={8}
+            bg="white"
+            borderRadius="2xl"
+            boxShadow="0 4px 20px rgba(0,0,0,0.06)"
             textAlign="center"
             transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
             borderWidth="1px"
-            borderColor="gray.600"
+            borderColor="gray.100"
+            spacing={4}
             _hover={{
-              transform: 'translateY(-10px) scale(1.03)',
-              boxShadow: '0 15px 35px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(56, 178, 172, 0.4)',
-              bg: 'gray.650',
-              borderColor: 'teal.400'
+              transform: 'translateY(-10px)',
+              boxShadow: '0 20px 50px rgba(255, 107, 157, 0.15)',
+              borderColor: 'pink.200'
             }}
           >
+            <Text fontSize="4xl" mb={2}>
+              💭
+            </Text>
             <Text
-              fontSize="lg"
+              fontSize="md"
               fontStyle="italic"
-              lineHeight="1.7"
+              lineHeight="1.8"
+              color="gray.600"
               position="relative"
-              _before={{
-                content: '"""',
-                position: 'absolute',
-                left: '-15px',
-                top: '-10px',
-                fontSize: '3xl',
-                color: 'teal.400',
-                opacity: 0.5
-              }}
             >
-              {test.quote}
+              &ldquo;{test.quote}&rdquo;
             </Text>
-            <Text fontWeight="bold" mt={4} fontSize="md">
-              {test.name}
-            </Text>
-            <Text color="teal.300" fontWeight="semibold">
-              {test.score}
-            </Text>
+            <Box mt={4}>
+              <Text fontWeight="bold" fontSize="lg" color="gray.800">
+                {test.name}
+              </Text>
+              <Text fontSize="sm" color="gray.500" mt={1}>
+                {test.role}
+              </Text>
+              <Text fontSize="lg" mt={2}>
+                {test.score}
+              </Text>
+            </Box>
           </VStack>
         ))}
       </SimpleGrid>

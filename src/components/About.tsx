@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Heading, Text, SimpleGrid, Stat, StatLabel, StatNumber } from '@chakra-ui/react'
+import { Box, Heading, Text, SimpleGrid } from '@chakra-ui/react'
 import { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -84,9 +84,17 @@ export default function About() {
   }, [])
 
   return (
-    <Box ref={sectionRef} bg="gray.800" color="white" py={20} px={8} id="about">
-      <Heading ref={titleRef} as="h2" size="2xl" textAlign="center" mb={12}>
-        About Me
+    <Box ref={sectionRef} bg="white" color="gray.800" py={20} px={8} id="about">
+      <Heading
+        ref={titleRef}
+        as="h2"
+        size="2xl"
+        textAlign="center"
+        mb={6}
+        bgGradient="linear(to-r, #ff6b9d, #c084fc)"
+        bgClip="text"
+      >
+        Về Mình 💫
       </Heading>
       <Text
         ref={descriptionRef}
@@ -95,43 +103,84 @@ export default function About() {
         mx="auto"
         mb={12}
         fontSize="lg"
-        lineHeight="1.8"
+        lineHeight="1.9"
+        color="gray.600"
       >
-        I&apos;m Antt, a passionate Software Engineer specializing in web development. With years of experience in building scalable apps using React, Next.js, and modern tech stacks, I focus on creating efficient, user-centric solutions. Graduated from [Your University], I&apos;ve worked on various projects from startups to enterprise levels.
+        Mình là Antt, một Software Engineer đam mê xây dựng các ứng dụng web hiện đại.
+        Với nhiều năm kinh nghiệm với React, Next.js và các công nghệ mới nhất, mình tập trung
+        vào việc tạo ra những giải pháp đẹp mắt, hiệu quả và thân thiện với người dùng ✨
       </Text>
-      <SimpleGrid ref={statsRef} columns={{ base: 1, md: 4 }} spacing={10} justifyItems="center">
-        <Stat
+      <SimpleGrid
+        ref={statsRef}
+        columns={{ base: 2, md: 4 }}
+        spacing={8}
+        maxW="1000px"
+        mx="auto"
+      >
+        <Box
           textAlign="center"
+          p={6}
+          bg="linear-gradient(135deg, #fce7f3 0%, #fff 100%)"
+          borderRadius="2xl"
+          border="1px solid"
+          borderColor="pink.100"
           transition="all 0.3s ease"
-          _hover={{ transform: 'scale(1.1)', color: 'teal.300' }}
+          _hover={{
+            transform: 'scale(1.05) translateY(-5px)',
+            boxShadow: '0 10px 30px rgba(255, 107, 157, 0.15)'
+          }}
         >
-          <StatNumber fontSize="4xl">5+</StatNumber>
-          <StatLabel>Years in IT</StatLabel>
-        </Stat>
-        <Stat
+          <Text fontSize="4xl" fontWeight="bold" color="pink.500">5+</Text>
+          <Text color="gray.600" mt={2} fontSize="sm">Năm Kinh Nghiệm</Text>
+        </Box>
+        <Box
           textAlign="center"
+          p={6}
+          bg="linear-gradient(135deg, #f3e8ff 0%, #fff 100%)"
+          borderRadius="2xl"
+          border="1px solid"
+          borderColor="purple.100"
           transition="all 0.3s ease"
-          _hover={{ transform: 'scale(1.1)', color: 'teal.300' }}
+          _hover={{
+            transform: 'scale(1.05) translateY(-5px)',
+            boxShadow: '0 10px 30px rgba(192, 132, 252, 0.15)'
+          }}
         >
-          <StatNumber fontSize="4xl">30+</StatNumber>
-          <StatLabel>GitHub Repos</StatLabel>
-        </Stat>
-        <Stat
+          <Text fontSize="4xl" fontWeight="bold" color="purple.500">30+</Text>
+          <Text color="gray.600" mt={2} fontSize="sm">GitHub Repos</Text>
+        </Box>
+        <Box
           textAlign="center"
+          p={6}
+          bg="linear-gradient(135deg, #dbeafe 0%, #fff 100%)"
+          borderRadius="2xl"
+          border="1px solid"
+          borderColor="blue.100"
           transition="all 0.3s ease"
-          _hover={{ transform: 'scale(1.1)', color: 'teal.300' }}
+          _hover={{
+            transform: 'scale(1.05) translateY(-5px)',
+            boxShadow: '0 10px 30px rgba(96, 165, 250, 0.15)'
+          }}
         >
-          <StatNumber fontSize="4xl">100%</StatNumber>
-          <StatLabel>Open Source Contributor</StatLabel>
-        </Stat>
-        <Stat
+          <Text fontSize="4xl" fontWeight="bold" color="blue.500">100%</Text>
+          <Text color="gray.600" mt={2} fontSize="sm">Open Source</Text>
+        </Box>
+        <Box
           textAlign="center"
+          p={6}
+          bg="linear-gradient(135deg, #fef3c7 0%, #fff 100%)"
+          borderRadius="2xl"
+          border="1px solid"
+          borderColor="yellow.100"
           transition="all 0.3s ease"
-          _hover={{ transform: 'scale(1.1)', color: 'teal.300' }}
+          _hover={{
+            transform: 'scale(1.05) translateY(-5px)',
+            boxShadow: '0 10px 30px rgba(251, 191, 36, 0.15)'
+          }}
         >
-          <StatNumber fontSize="4xl">8+</StatNumber>
-          <StatLabel>Tech Stacks Mastered</StatLabel>
-        </Stat>
+          <Text fontSize="4xl" fontWeight="bold" color="yellow.600">8+</Text>
+          <Text color="gray.600" mt={2} fontSize="sm">Tech Stacks</Text>
+        </Box>
       </SimpleGrid>
     </Box>
   )

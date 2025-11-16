@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Heading, FormControl, FormLabel, Input, Button, Textarea, VStack } from '@chakra-ui/react'
+import { Box, Heading, Text, FormControl, FormLabel, Input, Button, Textarea, VStack } from '@chakra-ui/react'
 import { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -95,77 +95,109 @@ export default function Contact() {
   };
 
   return (
-    <Box ref={sectionRef} bg="gray.800" color="white" py={20} px={8} id="contact">
+    <Box ref={sectionRef} bg="white" color="gray.800" py={20} px={8} id="contact">
       <Box width="100%" textAlign="center" mb={12}>
-        <Heading ref={titleRef} as="h2" size="2xl">
-          Get in Touch
+        <Heading
+          ref={titleRef}
+          as="h2"
+          size="2xl"
+          bgGradient="linear(to-r, #ff6b9d, #c084fc)"
+          bgClip="text"
+        >
+          Liên Hệ Với Mình 📮
         </Heading>
+        <Text mt={4} fontSize="lg" color="gray.600">
+          Có dự án hay ý tưởng thú vị? Hãy chia sẻ với mình nhé!
+        </Text>
       </Box>
-      <VStack ref={formRef} maxW="600px" mx="auto" spacing={6}>
+      <VStack
+        ref={formRef}
+        maxW="600px"
+        mx="auto"
+        spacing={6}
+        bg="white"
+        p={8}
+        borderRadius="2xl"
+        boxShadow="0 4px 30px rgba(0,0,0,0.08)"
+        border="1px solid"
+        borderColor="gray.100"
+      >
         <FormControl>
-          <FormLabel fontWeight="semibold">Your Name</FormLabel>
+          <FormLabel fontWeight="semibold" color="gray.700">Tên của bạn</FormLabel>
           <Input
-            placeholder="Enter your name"
-            bg="gray.700"
-            borderColor="gray.600"
-            _hover={{ borderColor: 'teal.400' }}
+            placeholder="Nhập tên của bạn"
+            bg="gray.50"
+            borderColor="gray.200"
+            borderRadius="xl"
+            _hover={{ borderColor: 'pink.300', bg: 'white' }}
             _focus={{
-              borderColor: 'teal.400',
-              boxShadow: '0 0 0 1px rgba(56, 178, 172, 0.6)',
+              borderColor: 'pink.400',
+              boxShadow: '0 0 0 3px rgba(255, 107, 157, 0.1)',
               transform: 'translateY(-2px)',
-              transition: 'all 0.2s'
+              transition: 'all 0.2s',
+              bg: 'white'
             }}
             transition="all 0.2s"
           />
         </FormControl>
         <FormControl>
-          <FormLabel fontWeight="semibold">Email</FormLabel>
+          <FormLabel fontWeight="semibold" color="gray.700">Email</FormLabel>
           <Input
             type="email"
-            placeholder="Enter your email"
-            bg="gray.700"
-            borderColor="gray.600"
-            _hover={{ borderColor: 'teal.400' }}
+            placeholder="email@example.com"
+            bg="gray.50"
+            borderColor="gray.200"
+            borderRadius="xl"
+            _hover={{ borderColor: 'pink.300', bg: 'white' }}
             _focus={{
-              borderColor: 'teal.400',
-              boxShadow: '0 0 0 1px rgba(56, 178, 172, 0.6)',
+              borderColor: 'pink.400',
+              boxShadow: '0 0 0 3px rgba(255, 107, 157, 0.1)',
               transform: 'translateY(-2px)',
-              transition: 'all 0.2s'
+              transition: 'all 0.2s',
+              bg: 'white'
             }}
             transition="all 0.2s"
           />
         </FormControl>
         <FormControl>
-          <FormLabel fontWeight="semibold">Message</FormLabel>
+          <FormLabel fontWeight="semibold" color="gray.700">Lời nhắn</FormLabel>
           <Textarea
-            placeholder="Tell me about your project or idea!"
-            bg="gray.700"
-            borderColor="gray.600"
+            placeholder="Hãy chia sẻ về dự án hoặc ý tưởng của bạn..."
+            bg="gray.50"
+            borderColor="gray.200"
+            borderRadius="xl"
             rows={6}
-            _hover={{ borderColor: 'teal.400' }}
+            _hover={{ borderColor: 'pink.300', bg: 'white' }}
             _focus={{
-              borderColor: 'teal.400',
-              boxShadow: '0 0 0 1px rgba(56, 178, 172, 0.6)',
+              borderColor: 'pink.400',
+              boxShadow: '0 0 0 3px rgba(255, 107, 157, 0.1)',
               transform: 'translateY(-2px)',
-              transition: 'all 0.2s'
+              transition: 'all 0.2s',
+              bg: 'white'
             }}
             transition="all 0.2s"
           />
         </FormControl>
         <Button
           ref={buttonRef}
-          colorScheme="teal"
           size="lg"
           width="full"
+          bg="linear-gradient(135deg, #ff6b9d 0%, #c084fc 100%)"
+          color="white"
+          borderRadius="full"
+          py={6}
+          fontSize="lg"
+          fontWeight="bold"
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           transition="all 0.3s ease"
+          boxShadow="0 8px 25px rgba(255, 107, 157, 0.3)"
           _hover={{
-            transform: 'scale(1.05)',
-            boxShadow: '0 10px 30px rgba(56, 178, 172, 0.4)'
+            transform: 'scale(1.02)',
+            boxShadow: '0 15px 40px rgba(255, 107, 157, 0.4)'
           }}
         >
-          Send Message
+          Gửi Tin Nhắn 🚀
         </Button>
       </VStack>
     </Box>

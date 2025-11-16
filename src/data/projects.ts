@@ -1,29 +1,68 @@
 // src/data/projects.ts
 
-export const projects = [
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  link?: string;
+  category: string;
+}
+
+export const projects: Project[] = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    description: 'A full-stack online store built with Next.js, integrated with Stripe for payments and real-time inventory management.',
-    image: 'https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=1170&q=80',
-    tags: ['Next.js', 'Stripe', 'PostgreSQL', 'React'],
-    link: 'https://github.com/yourusername/ecommerce-project'
+    title: 'E-Commerce Thời Trang 👗',
+    description: 'Website thương mại điện tử bán quần áo thời trang với tích hợp thanh toán Stripe và quản lý kho hàng real-time.',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
+    tags: ['Next.js', 'Stripe', 'MongoDB', 'Tailwind'],
+    link: '#',
+    category: 'Web App'
   },
   {
     id: 2,
-    title: 'Task Management App',
-    description: 'A collaborative task tracker using React and Firebase, with real-time updates and user authentication.',
-    image: 'https://images.unsplash.com/photo-1460925898917-89882befb4b1?auto=format&fit=crop&w=1170&q=80',
-    tags: ['React', 'Firebase', 'Redux', 'Material UI'],
-    link: 'https://github.com/yourusername/task-app'
+    title: 'App Quản Lý Công Việc 📝',
+    description: 'Ứng dụng quản lý task theo nhóm với tính năng real-time collaboration, drag-and-drop và thông báo.',
+    image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop',
+    tags: ['React', 'Node.js', 'Socket.io', 'PostgreSQL'],
+    link: '#',
+    category: 'Web App'
   },
   {
     id: 3,
-    title: 'Portfolio Website',
-    description: 'This very site! A dynamic portfolio showcasing my work with GSAP animations and Chakra UI.',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1170&q=80',
+    title: 'Portfolio Website ✨',
+    description: 'Portfolio cá nhân với animations đẹp mắt, responsive design và performance tối ưu.',
+    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop',
     tags: ['Next.js', 'GSAP', 'Chakra UI', 'TypeScript'],
-    link: 'https://yourportfolio.com'
+    link: '#',
+    category: 'Portfolio'
   },
-  // Add more real projects here
+  {
+    id: 4,
+    title: 'Food Delivery App 🍕',
+    description: 'App đặt đồ ăn online với tích hợp map, tracking đơn hàng real-time và thanh toán điện tử.',
+    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop',
+    tags: ['React Native', 'Firebase', 'Google Maps', 'Stripe'],
+    link: '#',
+    category: 'Mobile App'
+  },
+  {
+    id: 5,
+    title: 'Social Media Dashboard 📊',
+    description: 'Dashboard quản lý social media với analytics chi tiết, schedule posts và performance metrics.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+    tags: ['Vue.js', 'Chart.js', 'Express', 'Redis'],
+    link: '#',
+    category: 'Dashboard'
+  },
+  {
+    id: 6,
+    title: 'Learning Platform 📚',
+    description: 'Nền tảng học online với video lessons, quiz, progress tracking và certificate.',
+    image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop',
+    tags: ['Next.js', 'Prisma', 'AWS', 'Stripe'],
+    link: '#',
+    category: 'Web App'
+  },
 ];
