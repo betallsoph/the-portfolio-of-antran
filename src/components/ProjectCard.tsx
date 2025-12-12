@@ -15,47 +15,107 @@ interface ProjectCardProps {
 export default function ProjectCard({ title, description, image, tags, link }: ProjectCardProps) {
   return (
     <Box
-      className="project-card" // Thêm class để GSAP có thể "tóm" được
+      className="project-card"
       maxW="lg"
+      w="full"
       borderWidth="1px"
-      borderRadius="lg"
+      borderRadius="2xl"
       overflow="hidden"
-      bg="gray.800"
-      borderColor="gray.700"
-      transition="all 0.3s"
+      bg="white"
+      borderColor="gray.100"
+      boxShadow="0 4px 20px rgba(0,0,0,0.06)"
+      transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+      position="relative"
       _hover={{
-        transform: 'translateY(-10px)', // Enhanced hover
-        boxShadow: 'xl',
-        borderColor: 'teal.500',
+        transform: 'translateY(-12px)',
+        boxShadow: '0 20px 50px rgba(255, 107, 157, 0.15)',
+        borderColor: 'pink.200',
+        '& .project-image': {
+          transform: 'scale(1.08)',
+        },
+        '& .project-overlay': {
+          opacity: 1,
+        }
       }}
     >
-      <Image 
-        src={image} 
-        alt={`Screenshot of ${title}`} 
-        width={400}
-        height={200}
-        style={{
-          height: '200px',
-          width: '100%',
-          objectFit: 'cover'
-        }}
-      />
+      <Box overflow="hidden" position="relative" height="220px">
+        <Image
+          className="project-image"
+          src={image}
+          alt={`Screenshot of ${title}`}
+          width={400}
+          height={220}
+          style={{
+            height: '220px',
+            width: '100%',
+            objectFit: 'cover',
+            transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        />
+        {/* Overlay gradient */}
+        <Box
+          className="project-overlay"
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          bg="linear-gradient(to top, rgba(255, 107, 157, 0.3), transparent)"
+          opacity={0}
+          transition="opacity 0.4s ease"
+        />
+      </Box>
 
       <Box p={6}>
-        <Heading size="md" mb={2}>{title}</Heading>
-        <Text color="gray.400" mb={4}>{description}</Text>
+        <Heading size="md" mb={2} color="gray.800" transition="color 0.3s">
+          {title}
+        </Heading>
+        <Text color="gray.600" mb={4} lineHeight="1.7" fontSize="sm">
+          {description}
+        </Text>
 
-        <Wrap mb={4}>
+        <Wrap mb={4} spacing={2}>
           {tags.map((tag) => (
             <WrapItem key={tag}>
-              <Tag size="sm" colorScheme="teal" variant="solid">{tag}</Tag>
+              <Tag
+                size="sm"
+                bg="pink.50"
+                color="pink.600"
+                borderRadius="full"
+                px={3}
+                py={1}
+                fontWeight="medium"
+                fontSize="xs"
+                transition="all 0.2s"
+                _hover={{
+                  transform: 'scale(1.05)',
+                  bg: 'pink.100'
+                }}
+              >
+                {tag}
+              </Tag>
             </WrapItem>
           ))}
         </Wrap>
 
         {link && (
-          <Button colorScheme="teal" size="sm" as="a" href={link} target="_blank">
-            Xem Project
+          <Button
+            className="project-button"
+            size="sm"
+            as="a"
+            href={link}
+            target="_blank"
+            bg="linear-gradient(135deg, #ff6b9d 0%, #c084fc 100%)"
+            color="white"
+            borderRadius="full"
+            px={5}
+            transition="all 0.3s ease"
+            _hover={{
+              transform: 'scale(1.05)',
+              boxShadow: '0 8px 20px rgba(255, 107, 157, 0.3)'
+            }}
+          >
+            Xem Chi Tiết →
           </Button>
         )}
       </Box>
